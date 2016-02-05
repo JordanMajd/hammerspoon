@@ -1,6 +1,6 @@
 # hammerspoon
 
-## About
+## About:
 
 This is my hammerspoon config file for my work computer. To install, drop the `init.lua` into your `~/.hammerspoon` directory and reload your config.
 
@@ -10,7 +10,7 @@ If you don't know what [hammerspoon](https://github.com/Hammerspoon/hammerspoon)
 
  - Simple window tiling using `cmd` + `alt` + `direction`
  - Psuedo full screen using `cmd` + `alt` + `f`
- - Lock screen using `cmd` + `alt` + `t`
+ - Lock screen using `cmd` + `alt` + `l`
  - A Caffeine mode that keeps the screen awake and disables notifications using `cmd` + `alt` + `c`.
  - Automatic config file reloading.
 
