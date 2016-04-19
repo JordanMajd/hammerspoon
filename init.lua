@@ -129,6 +129,7 @@ toggleCaffeine()
 --/CAFFIENE--
 
 --AUTORELOAD--
+--watches hammerspoon config for changes and reloads--
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 toast("Hammerspoon","Config Reloaded.");
 --/AUTORELOAD--
