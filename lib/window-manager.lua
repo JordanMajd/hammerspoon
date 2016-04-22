@@ -55,6 +55,11 @@ function WindowManager.init()
 	--no window animations--
 	hs.window.animationDuration = 0
 
+
+	--ignore docking and other size / position issues when trying to set frame
+	-- hs.window.setFrameCorrectness = true
+
+
 	--window right half of screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "right", function()
 		WindowManager.right(hs.window.focusedWindow())
@@ -82,7 +87,7 @@ function WindowManager.init()
 
 	--close window--
 	hs.hotkey.bind(InputManager.CMD_ALT, "d", function()
-		WindowManager.close(hs.window.focusedWindow())
+		WindowManager.minimize(hs.window.focusedWindow())
 	end)
 end
 
