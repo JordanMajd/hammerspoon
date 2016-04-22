@@ -67,9 +67,7 @@ function GridManager.init()
 	--no window animations--
 	hs.window.animationDuration = 0
 
-
-	--ignore docking and other size / position issues when trying to set frame
-	-- hs.window.setFrameCorrectness = true
+  hs.grid.setMargins(hs.geometry(0, 0))
   for i, screen in ipairs(hs.screen.allScreens()) do
     hs.grid.setGrid('2x2', screen)
   end
