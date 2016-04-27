@@ -47,6 +47,12 @@ function Caffeine:toggleCaffeine()
 	end
 end
 
+function Caffeine:setKeyBindings()
+  hs.hotkey.bind(InputManager.CMD_ALT, "c", function()
+    Caffeine:toggleCaffeine()
+  end)
+end
+
 function Caffeine:init()
   --set initial state
   self:setIconOff()
@@ -59,9 +65,7 @@ function Caffeine:init()
     Caffeine:toggleCaffeine()
   end)
 
-  hs.hotkey.bind(InputManager.CMD_ALT, "c", function()
-    Caffeine:toggleCaffeine()
-  end)
+  self:setKeyBindings()
 end
 
 return Caffeine

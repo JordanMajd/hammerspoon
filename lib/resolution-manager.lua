@@ -55,7 +55,6 @@ function ResolutionManager:setResolution(mode)
   hs.screen.mainScreen():setMode(mode.w, mode.h, mode.scale)
 end
 
-
 function ResolutionManager:init()
   self.menu:setMenu(function() return ResolutionManager:getResolutionsMenuTable() end)
   self.menu:setIcon(self.menuIcon)
