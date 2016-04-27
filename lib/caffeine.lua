@@ -7,10 +7,22 @@ local DISPLAY_IDLE = "displayIdle"
 
 local Caffeine = {
   menu = hs.menubar.new(),
+  caffeineOnImage = hs.image.imageFromPath("./assets/caffeine-on.pdf"),
+  caffeineOffImage = hs.image.imageFromPath("./assets/caffeine-off.pdf")
 }
 
 function Caffeine:setTitle(title)
   self.menu:setTitle(title)
+end
+
+function Caffeine:setIconOn()
+  self.menu:setIcon(self.caffeineOnImage)
+  self.menu:setTooltip("Caffienated: notifications off, system sleeping disabled.")
+end
+
+function Caffeine:setIconOff()
+  self.menu:setIcon(self.caffeineOffImage)
+  self.menu:setTooltip("Tired: notifications on, system sleeping enabled.")
 end
 
 function Caffeine.enableNotifications()
@@ -23,12 +35,12 @@ end
 
 function Caffeine:toggleCaffeine()
 	if hs.caffeinate.get(DISPLAY_IDLE) then
-    self:setTitle("Tired")
+    self:setIconOff()
     --allow display/system to sleep if user is idle
     hs.caffeinate.set(DISPLAY_IDLE, false)
     self.enableNotifications()
 	else
-    self:setTitle("Awake")
+    self:setIconOn()
     --do not allow display/system to sleep if user is idle
     hs.caffeinate.set(DISPLAY_IDLE, true)
     self.disableNotifications()
@@ -37,7 +49,7 @@ end
 
 function Caffeine:init()
   --set initial state
-  self:setTitle("Tired")
+  self:setIconOff()
   --allow display/system to sleep if user is idle
   hs.caffeinate.set(DISPLAY_IDLE, false)
 

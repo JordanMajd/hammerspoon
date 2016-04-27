@@ -4,8 +4,10 @@ local Util = require "lib.util"
 --adds a menu to quickly change screen resolutions
 
 local ResolutionManager = {
-  menu = hs.menubar.new()
+  menu = hs.menubar.new(),
+  menuIcon = hs.image.imageFromName("NSActionTemplate")
 }
+
 
 function ResolutionManager:getResolutionsMenuTable()
   local currentScreen = hs.screen.mainScreen()
@@ -56,7 +58,8 @@ end
 
 function ResolutionManager:init()
   self.menu:setMenu(function() return ResolutionManager:getResolutionsMenuTable() end)
-  self.menu:setTitle("Resolution")
+  self.menu:setIcon(self.menuIcon)
+  self.menu:setTooltip("Select screen resolution")
 end
 
 

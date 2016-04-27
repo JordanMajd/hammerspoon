@@ -2,7 +2,7 @@
 
 This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) that provides several features and productivity boosts for OSX.
 
-![Image of window management](/example.gif)
+![Image of window management](/assets/example.gif)
 
 ## Features
 
@@ -21,3 +21,7 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 ## Issues / Suggestions:
 
 Feel free to open an issue to give me suggestions, feedback or let me know if something doesn't work.
+
+## Credits
+
+- Caffeine icon from [Brian Gilbert's config](https://github.com/BrianGilbert/.hammerspoon)
