@@ -1,13 +1,12 @@
-local Util = require "lib.util"
-
---REDSHIFTMANAGER--
+--redshift-manager.lua
 --adjust screen color temperature based on time of day
 --todo add menu and keybaord toggle
+
 local Redshift = {
   upMenu = hs.menubar.new(),
   resetMenu = hs.menubar.new(),
   downMenu = hs.menubar.new(),
-  temperature = 1600
+  temperature = 2000
 }
 
 function Redshift:turnDown()
@@ -15,7 +14,7 @@ function Redshift:turnDown()
   if self.temperature >= 1100 then
     self.temperature = self.temperature - 100
   end
-  
+
   self:setTemp()
 end
 
@@ -46,8 +45,6 @@ function Redshift:setTemp()
     hs.redshift.stop()
 
     hs.redshift.start(self.temperature, os.date("%H:%M"), tostring(endHour) .. ":" .. tostring(currentMin), 0)
-
-    Util.alert(self.temperature .. 'K')
 end
 
 function Redshift:init()

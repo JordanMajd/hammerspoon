@@ -1,6 +1,7 @@
 local Util = require "lib.util"
 
 --conky.lua
+--WIP
 --Eventually going to be a desktop dashboard for CPU, disk and network stats
 
 local Conky = {
@@ -21,7 +22,7 @@ function Conky:init()
 
   self:initBackground()
   self:initText()
-  self:initImage()
+  -- self:initImage()
 
   hs.timer.doEvery(self.tickRate, function()
     me:updateText()
@@ -34,44 +35,48 @@ function Conky:initBackground()
   self.background:setStroke(false)
   self.background:setFillColor(self.backgroundColor)
   self.background:setLevel("desktop")
+  self.background:setBehavior(1)
   self.background:show()
 end
 
 function Conky:initText()
   self.text = hs.drawing.text(self.textDimensions, "")
-  self.text:setTextColor(self.textColor)
-  self.text:setTextSize(12)
+  -- self.text:setTextColor(self.textColor)
+  -- self.text:setTextSize(12)
   self.text:setLevel("desktop")
+  self.text:setBehavior(1)
   self.text:orderAbove(self.background)
-  self.text:show()
+
   self:updateText()
+
+  self.text:show()
 end
 
-function Conky:initImage()
-
-  local ascii =  [[
-  ....5....
-  ....#....
-  ....#....
-  ....#....
-  ..1.#.3..
-  ...#5#...
-  6...2...9
-  #.......#
-  7#######8
-  ]]
-
-
-  self.image = hs.drawing.image(self.imageDimensions, hs.image.imageFromASCII(ascii))
-  self.image:setFill(true)
-  self.image:setStroke(true)
-  self.image:setFillColor(self.textColor)
-  self.image:setLevel("desktop")
-  self.image:orderAbove(self.background)
-  self.image:orderAbove(self.text)
-  self.image:show()
-
-end
+-- function Conky:initImage()
+--
+--   local ascii =  [[
+--   ....5....
+--   ....#....
+--   ....#....
+--   ....#....
+--   ..1.#.3..
+--   ...#5#...
+--   6...2...9
+--   #.......#
+--   7#######8
+--   ]]
+--
+--
+--   self.image = hs.drawing.image(self.imageDimensions, hs.image.imageFromASCII(ascii))
+--   self.image:setFill(true)
+--   self.image:setStroke(true)
+--   self.image:setFillColor(self.textColor)
+--   self.image:setLevel("desktop")
+--   self.image:orderAbove(self.background)
+--   self.image:orderAbove(self.text)
+--   self.image:show()
+--
+-- end
 
 function Conky:updateText()
 
@@ -82,7 +87,21 @@ function Conky:updateText()
   local addresses = Util:toString(hs.host.addresses())
 
   local fullText = cpuHeader .. cpuUsage .. addressesHeader .. addresses
-  self.text:setText(fullText)
+
+  local style = {
+    paragraphStyle = {
+      alignment = "justified"
+    },
+    font = {
+      name = hs.styledtext.defaultFonts.system,
+      size = 12
+    },
+    color = {red=0, blue=0, green=1, alpha=1}
+  }
+
+  local styledText = hs.styledtext.new(fullText, style)
+
+  self.text:setStyledText(styledText)
 
 end
 
