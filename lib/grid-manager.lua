@@ -69,50 +69,53 @@ function GridManager.decreaseHeight(window)
 end
 
 function GridManager:setKeyBindings()
+
+	local me = self
+
 	--window right half of screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "right", function()
-		GridManager.moveRight(hs.window.focusedWindow())
+		me.moveRight(hs.window.focusedWindow())
 	end)
 
 	--window left half of screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "left", function()
-		GridManager.moveLeft(hs.window.focusedWindow())
+		me.moveLeft(hs.window.focusedWindow())
 	end)
 
 	--window top half of screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "up", function()
-		GridManager.moveUp(hs.window.focusedWindow())
+		me.moveUp(hs.window.focusedWindow())
 	end)
 
 	--window bottom half of screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "down", function()
-		GridManager.moveDown(hs.window.focusedWindow())
+		me.moveDown(hs.window.focusedWindow())
 	end)
 
 	--window full screen--
 	hs.hotkey.bind(InputManager.CMD_ALT, "f", function()
-		GridManager.maximize(hs.window.focusedWindow())
+		me.maximize(hs.window.focusedWindow())
 	end)
 
 	--toggle grid view--
 	hs.hotkey.bind(InputManager.CMD_ALT, "s", function()
-		GridManager.guiSelect()
+		me.guiSelect()
 	end)
 
 	hs.hotkey.bind(InputManager.CMD_ALT_CTRL, "up", function()
-		GridManager.increaseHeight(hs.window.focusedWindow())
+		me.increaseHeight(hs.window.focusedWindow())
 	end)
 
 	hs.hotkey.bind(InputManager.CMD_ALT_CTRL, "down", function()
-		GridManager.decreaseHeight(hs.window.focusedWindow())
+		me.decreaseHeight(hs.window.focusedWindow())
 	end)
 
 	hs.hotkey.bind(InputManager.CMD_ALT_CTRL, "right", function()
-		GridManager.increaseWidth(hs.window.focusedWindow())
+		me.increaseWidth(hs.window.focusedWindow())
 	end)
 
 	hs.hotkey.bind(InputManager.CMD_ALT_CTRL, "left", function()
-		GridManager.decreaseWidth(hs.window.focusedWindow())
+		me.decreaseWidth(hs.window.focusedWindow())
 	end)
 end
 
