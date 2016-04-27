@@ -15,13 +15,21 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 ## Installation
 
 1. Install [Hammerspoon](https://github.com/Hammerspoon/hammerspoon).
-1. Drop `init.lua` into your `~/.hammerspoon` directory.
+1. Clone repository into your `~/.hammerspoon` directory.
 1. Open Hammerspoon or reload your config.
 
-## Issues / Suggestions:
+## Roadmap
+
+- Create a roadmap
+
+## Issues / Suggestions
 
 Feel free to open an issue to give me suggestions, feedback or let me know if something doesn't work.
 
 ## Credits
 
-- Caffeine icon from [Brian Gilbert's config](https://github.com/BrianGilbert/.hammerspoon)
+- Caffeine menu bar icon from [Brian Gilbert's config](https://github.com/BrianGilbert/.hammerspoon).
+
+## License
+
+- MIT, see [LICENSE](/LICENSE) for more details.

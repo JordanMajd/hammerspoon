@@ -15,11 +15,8 @@ function Redshift:turnDown()
   if self.temperature >= 1100 then
     self.temperature = self.temperature - 100
   end
-
-  hs.redshift.stop()
-  Util.alert(self.temperature .. 'K')
-  --TODO set so it lasts longer period of time
-  hs.redshift.start(self.temperature, os.date("%H:%M"), "12:00")
+  
+  self:setTemp()
 end
 
 function Redshift:turnUp()
@@ -28,14 +25,29 @@ function Redshift:turnUp()
     self.temperature = self.temperature + 100
   end
 
-  hs.redshift.stop()
-  Util.alert(self.temperature .. '')
-  --TODO set so it lasts longer period of time
-  hs.redshift.start(self.temperature, os.date("%H:%M"), "12:00")
+  self:setTemp()
 end
 
+--TODO change to dropdown menu to stop, start, invert
 function Redshift:reset()
   hs.redshift.stop()
+end
+
+function Redshift:setTemp()
+
+    local currentHour = tonumber(os.date("%H"))
+    local currentMin = tonumber(os.date("%M"))
+
+    local endHour = currentHour + 12
+    if endHour > 23 then
+      endHour = endHour - 23
+    end
+
+    hs.redshift.stop()
+
+    hs.redshift.start(self.temperature, os.date("%H:%M"), tostring(endHour) .. ":" .. tostring(currentMin), 0)
+
+    Util.alert(self.temperature .. 'K')
 end
 
 function Redshift:init()

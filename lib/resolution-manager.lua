@@ -2,7 +2,7 @@ local Util = require "lib.util"
 
 --RESOLUTIONMANAGER--
 --adds a menu to quickly change screen resolutions
-
+--TODO individual resolution for multiple screens
 local ResolutionManager = {
   menu = hs.menubar.new(),
   menuIcon = hs.image.imageFromName("NSActionTemplate")
@@ -45,9 +45,12 @@ function ResolutionManager:getResolutionsMenuTable()
 end
 
 function ResolutionManager:getMenuEntryForMode(mode)
+
+  local me = self
+
   return {
     title = mode.desc,
-    fn = function() ResolutionManager:setResolution(mode) end
+    fn = function() me:setResolution(mode) end
   }
 end
 
