@@ -20,7 +20,8 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 
 ## Roadmap
 
-- Create a roadmap
+- Create docs for each file
+- Implement input manager with settings
 
 ## Issues / Suggestions
 
