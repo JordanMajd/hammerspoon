@@ -1,19 +1,36 @@
 local Util = require "lib.util"
 
 --conky.lua
---WIP
 --Eventually going to be a desktop dashboard for CPU, disk and network stats
-
 local Conky = {
   tickRate = 10,
   background = nil,
-  backgroundDimensions = hs.geometry.rect(0, 50, 400, 800),
+  backgroundDimensions = hs.geometry.rect(0, 50, 155, 335),
   backgroundColor = {red=0, blue=0, green=0, alpha=0.65},
   text = nil,
-  textDimensions = hs.geometry.rect(0, 60, 400, 800),
-  textColor = {red=1, blue=1, green=1, alpha=1},
-  imageDimensions = hs.geometry.rect(100, 100, 400, 400),
-  image = nil
+  textDimensions = hs.geometry.rect(10, 60, 155, 335),
+  bodyStyle = {
+    paragraphStyle = {
+      alignment = "justified"
+    },
+    font = {
+      name = hs.styledtext.defaultFonts.system,
+      size = 12
+    },
+    color = { red=0, blue=0, green=1, alpha=1 }
+  },
+  headerStyle = {
+    paragraphStyle = {
+      alignment = "justified"
+    },
+    font = {
+      name = hs.styledtext.defaultFonts.label,
+      size = 18
+    },
+    color = { red=1, blue=1, green=1, alpha=1 }
+  },
+  lineSpacing = 15,
+  netConfig = hs.network.configuration.open()
 }
 
 function Conky:init()
@@ -22,7 +39,6 @@ function Conky:init()
 
   self:initBackground()
   self:initText()
-  -- self:initImage()
 
   hs.timer.doEvery(self.tickRate, function()
     me:updateText()
@@ -41,68 +57,106 @@ end
 
 function Conky:initText()
   self.text = hs.drawing.text(self.textDimensions, "")
-  -- self.text:setTextColor(self.textColor)
-  -- self.text:setTextSize(12)
   self.text:setLevel("desktop")
   self.text:setBehavior(1)
   self.text:orderAbove(self.background)
-
   self:updateText()
-
   self.text:show()
 end
 
--- function Conky:initImage()
---
---   local ascii =  [[
---   ....5....
---   ....#....
---   ....#....
---   ....#....
---   ..1.#.3..
---   ...#5#...
---   6...2...9
---   #.......#
---   7#######8
---   ]]
---
---
---   self.image = hs.drawing.image(self.imageDimensions, hs.image.imageFromASCII(ascii))
---   self.image:setFill(true)
---   self.image:setStroke(true)
---   self.image:setFillColor(self.textColor)
---   self.image:setLevel("desktop")
---   self.image:orderAbove(self.background)
---   self.image:orderAbove(self.text)
---   self.image:show()
---
--- end
-
 function Conky:updateText()
 
-  local cpuHeader = "CPU Usage: \n"
-  local cpuUsage = Util:toString(hs.host.cpuUsage())
+  local text = hs.styledtext.new("", {})
 
-  local addressesHeader = "Addresses: \n"
-  local addresses = Util:toString(hs.host.addresses())
+  local systemText = hs.host.localizedName() .. "\n"
+  systemText = systemText .. self.netConfig:consoleUser() .."\n"
 
-  local fullText = cpuHeader .. cpuUsage .. addressesHeader .. addresses
+  local systemName = hs.styledtext.new(systemText 	, self.headerStyle)
+  text = text:__concat(systemName)
 
-  local style = {
-    paragraphStyle = {
-      alignment = "justified"
-    },
-    font = {
-      name = hs.styledtext.defaultFonts.system,
-      size = 12
-    },
-    color = {red=0, blue=0, green=1, alpha=1}
-  }
+  local cpuUsage = self:getCpuUsage()
+  text = text:__concat(cpuUsage)
 
-  local styledText = hs.styledtext.new(fullText, style)
+  local vmStats = self:getVmStats()
+  text = text:__concat(vmStats)
 
-  self.text:setStyledText(styledText)
+  text = text:__concat(self:getSeparator())
 
+  self.text:setStyledText(text)
+
+end
+
+function Conky:getCpuUsage()
+
+  local returnText = hs.styledtext.new("", {})
+  returnText = returnText:__concat(self:getSeparator())
+
+  local cpuUsage = hs.host.cpuUsage()
+
+  local cpuHeader = hs.styledtext.new("CPU Usage: \n", self.headerStyle)
+  returnText = returnText:__concat(cpuHeader)
+
+
+  local cpuStr = "Num. Cores: " .. cpuUsage.n .. "\n"
+  local usage = string.format("%.2f", tonumber(cpuUsage.overall.idle) / tonumber(cpuUsage.overall.active))
+  cpuStr = cpuStr .. "- Overall  : " .. tostring(usage) .. "%\n"
+
+  for i, stat in ipairs(cpuUsage) do
+    if stat and stat.active and stat.idle then
+      local usage = string.format("%.2f", tonumber(stat.idle) / tonumber(stat.active))
+      cpuStr = cpuStr .. "- Core #" .. tostring(i) .. " : " .. tostring(usage) .. "%\n"
+    end
+  end
+
+  local cpuBody = hs.styledtext.new(cpuStr, self.bodyStyle)
+  returnText = returnText:__concat(cpuBody)
+
+  return returnText
+
+end
+
+function Conky:getVmStats()
+
+  local returnText = hs.styledtext.new("", {})
+  returnText = returnText:__concat(self:getSeparator())
+
+  local vmStats = hs.host.vmStat()
+
+  local vmHeader = hs.styledtext.new("VM Stats: \n", self.headerStyle)
+  returnText = returnText:__concat(vmHeader)
+
+  --1024^2
+  local megDiv = 1048576
+  local megMulti = vmStats.pageSize / megDiv
+
+
+  -- Mem Used:
+  -- Wired Memory: -> Pages wired down
+  -- Compressed: -> Pages occupied by compressor
+  -- App Memory: -> Pages Active + Pages Speculative
+  --http://apple.stackexchange.com/questions/81581/why-does-free-active-inactive-speculative-wired-not-equal-total-ram
+  local megsUsed =  vmStats.pagesWiredDown * megMulti
+  megsUsed = megsUsed + vmStats.pagesUsedByVMCompressor * megMulti
+  megsUsed = megsUsed + vmStats.pagesActive * megMulti
+  megsUsed = megsUsed + vmStats.pagesSpeculative * megMulti
+
+  local totalMegs = vmStats.memSize / megDiv
+  local freeMegs = totalMegs - megsUsed
+
+  local megsCached = vmStats.fileBackedPages * megMulti
+
+  local vmBodyText = "In Use   : " .. string.format("%.f", megsUsed) .. "M - ".. string.format("%.f", megsUsed / totalMegs * 100) .. "%\n"
+  vmBodyText = vmBodyText .. "Free      : " .. string.format("%.f", freeMegs) .. "M - ".. string.format("%.f", freeMegs / totalMegs * 100) .. "%\n"
+  vmBodyText = vmBodyText .. "Total     : " .. string.format("%.f", totalMegs) .. "M\n"
+  vmBodyText = vmBodyText .. "Cached  : " .. string.format("%.f", megsCached) .. "M\n"
+  local vmBody = hs.styledtext.new(vmBodyText, self.bodyStyle)
+  returnText = returnText:__concat(vmBody)
+
+  return returnText
+end
+
+function Conky:getSeparator()
+  return hs.styledtext.new("----------------\n", self.headerStyle)
 end
 
 return Conky
