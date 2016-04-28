@@ -27,7 +27,7 @@ local Conky = {
       name = ".AppleSystemUIFont",
       size = 18
     },
-    color = { red=1, blue=1, green=1, alpha=1 }
+    color = { red=1, blue=1, green=1, alpha=0.5 }
   },
   headerStyle = {
     paragraphStyle = {
