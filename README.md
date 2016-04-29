@@ -6,10 +6,13 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 
 ## Features
 
- - Simple window tiling using `cmd` + `alt` + `direction`
+ - Cross monitor window tiling using `cmd` + `alt` + `direction`
+ - Window resizing using `ctrl` + `cmd` + `alt` + `direction`
  - Psuedo full screen using `cmd` + `alt` + `f`
  - Lock screen using `cmd` + `alt` + `l`
- - A Caffeine mode that keeps the screen awake and disables notifications using `cmd` + `alt` + `c`.
+ - Redshift menubar item to adjust screen temperature
+ - A Caffeine mode that keeps the screen awake and disables notifications using `cmd` + `alt` + `c` or menubar.
+ - A dropdown to select screen resolution and DPI
  - Automatic config file reloading.
 
 ## Installation
@@ -20,8 +23,11 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 
 ## Roadmap
 
+- Update README
 - Create docs for each file
 - Implement input manager with settings
+- Fix auto-reload to work consistently on all directories.
+- Implement pomadoro module.
 
 ## Issues / Suggestions
 
@@ -30,6 +36,12 @@ Feel free to open an issue to give me suggestions, feedback or let me know if so
 ## Credits
 
 - Caffeine menu bar icon from [Brian Gilbert's config](https://github.com/BrianGilbert/.hammerspoon).
+
+## Resources
+
+- [Lua.org](http://www.lua.org/)
+- [Learn Lua in Y Minutes](https://learnxinyminutes.com/docs/lua/)
+- [Hammerspoon.org](http://www.hammerspoon.org/)
 
 ## License
 
