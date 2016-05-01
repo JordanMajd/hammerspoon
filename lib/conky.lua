@@ -46,7 +46,6 @@ local Conky = {
 function Conky:init()
 
   local me = self
-  print(hs.styledtext.defaultFonts.label)
   self:initBackground()
   self:initText()
 
