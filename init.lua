@@ -12,12 +12,3 @@ GridManager:init()
 ResolutionManager:init()
 RedshiftManager:init()
 Conky:init()
-
-local wv = hs.webview.new(hs.geometry.rect(300, 300, 600, 600))
-wv:setLevel(-2147483623) --desktop
-wv:url("file:///Users/jmajd/.hammerspoon/www/index.html")
-local drawnWV = wv:asHSDrawing()
-
--- drawnWV:setAlpha(0.5)
-drawnWV:show()
-wv:show()
