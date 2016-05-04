@@ -28,6 +28,7 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 - Implement input manager with settings
 - Fix auto-reload to work consistently on all directories.
 - Implement pomadoro module.
+- Grid re-inits on screen disconnect / connect event so there aren't any 3x3 grids
 
 ## Issues / Suggestions
 
