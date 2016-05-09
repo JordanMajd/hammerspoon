@@ -10,10 +10,11 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
  - Window resizing using `ctrl` + `cmd` + `alt` + `direction`
  - Psuedo full screen using `cmd` + `alt` + `f`
  - Lock screen using `cmd` + `alt` + `l`
- - Redshift menubar item to adjust screen temperature
- - A Caffeine mode that keeps the screen awake and disables notifications using `cmd` + `alt` + `c` or menubar.
- - A dropdown to select screen resolution and DPI
- - Automatic config file reloading.
+ - Disables window animations.
+ - Redshift menubar item that allows variable screen temperature for easier night reading.
+ - A 'caffeine' mode, which keeps the screen awake and disables notifications using `cmd` + `alt` + `c` or menubar.
+ - A menubar dropdown to select primary screen resolution and DPI.
+ - Automatically reloads when code is updated.
 
 ## Installation
 
@@ -23,12 +24,13 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
 
 ## Roadmap
 
-- Update README
-- Create docs for each file
-- Implement input manager with settings
-- Fix auto-reload to work consistently on all directories.
+- Update README image and description.
+- Create documentation for each file.
+- Implement a settings file to manage all keyboard shortcuts.
+- Fix auto-reload to work consistently on all child directories.
 - Implement pomadoro module.
-- Grid re-inits on screen disconnect / connect event so there aren't any 3x3 grids
+- Make the window grid re-init on screen connect event so grids retain expected dimensions.
+- Multimonitor support for screen resolution dropdown.
 
 ## Issues / Suggestions
 
