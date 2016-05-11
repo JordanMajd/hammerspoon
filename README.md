@@ -2,6 +2,8 @@
 
 This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) that provides several features and productivity boosts for OSX.
 
+If you like or are using this config, please give it a :star: for motivation :)
+
 ![Image of window management](/assets/example.gif)
 
 ## Features
