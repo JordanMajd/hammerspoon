@@ -33,6 +33,7 @@ If you like or are using this config, please give it a :star: for motivation :)
 - Implement pomadoro module.
 - Make the window grid re-init on screen connect event so grids retain expected dimensions.
 - Multimonitor support for screen resolution dropdown.
+- Add Random.org random number generator to Conky.
 
 ## Issues / Suggestions
 
