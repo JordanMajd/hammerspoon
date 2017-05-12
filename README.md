@@ -20,7 +20,7 @@ If you like or are using this config, please give it a :star: for motivation :)
 
 ## Installation
 
-1. Install [Hammerspoon](https://github.com/Hammerspoon/hammerspoon).
+1. Install [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) and ensure it has accessibility rights in your privacy settings.
 1. Clone repository into your `~/.hammerspoon` directory.
 1. Open Hammerspoon or reload your config.
 
