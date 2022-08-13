@@ -4,7 +4,7 @@ function Util.toast(title, text)
 	hs.notify.new({
     title=title,
     informativeText=text
-  }):send():release()
+  }):send()
 end
 
 function Util.alert(text)
