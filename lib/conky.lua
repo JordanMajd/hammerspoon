@@ -110,8 +110,14 @@ function Conky:getCpuUsage()
 
   for i, stat in ipairs(cpuUsage) do
     if stat and stat.active and stat.idle then
-      local usage = string.format("%.2f", tonumber(stat.idle) / tonumber(stat.active))
-      cpuStr = cpuStr .. "- Core #" .. tostring(i) .. ": " .. tostring(usage) .. "%\n"
+      local idle = tonumber(stat.idle)
+      local active = tonumber(stat.active)
+      local usage = idle / active;
+      if active == 0 then
+        usage = 0
+      end
+      local usageStr = string.format("%.2f", usage)
+      cpuStr = cpuStr .. "- Core #" .. tostring(i) .. ": " .. tostring(usageStr) .. "%\n"
     end
   end
 
@@ -119,7 +125,6 @@ function Conky:getCpuUsage()
   returnText = returnText:__concat(cpuBody)
 
   return returnText
-
 end
 
 function Conky:getVmStats()
