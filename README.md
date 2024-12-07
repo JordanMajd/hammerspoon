@@ -38,10 +38,6 @@ If you like or are using this config, please give it a :star: for motivation :)
 
 Feel free to open an issue to give me suggestions, feedback or let me know if something doesn't work.
 
-## Credits
-
-- Caffeine menu bar icon from [Brian Gilbert's config](https://github.com/BrianGilbert/.hammerspoon).
-
 ## Resources
 
 - [Lua.org](http://www.lua.org/)
