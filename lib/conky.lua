@@ -1,7 +1,7 @@
 local Util = require "lib.util"
 
 --conky.lua
---Eventually going to be a desktop dashboard for CPU, disk and network stats
+--desktop dashboard for CPU, disk and network stats
 local Conky = {
   tickRate = 10,
   background = nil,

@@ -16,8 +16,6 @@ If you like or are using this config, please give it a :star: for motivation :)
  - Psuedo full screen using `cmd` + `alt` + `f`
  - Lock screen using `cmd` + `alt` + `l`
  - Disables window animations.
- - Redshift menubar item that allows variable screen temperature for easier night reading.
- - A 'caffeine' mode, which keeps the screen awake and disables notifications using `cmd` + `alt` + `c` or menubar.
  - A menubar dropdown to select primary screen resolution and DPI.
  - Automatically reloads when code is updated.
 
@@ -29,14 +27,11 @@ If you like or are using this config, please give it a :star: for motivation :)
 
 ## Roadmap
 
-- Update README image and description.
-- Create documentation for each file.
-- Implement a settings file to manage all keyboard shortcuts.
-- Fix auto-reload to work consistently on all child directories.
-- Implement pomadoro module.
-- Make the window grid re-init on screen connect event so grids retain expected dimensions.
-- Multimonitor support for screen resolution dropdown.
-- Add Random.org random number generator to Conky.
+- Make the window grid re-init on screen connect event so grids retain expected dimensions
+- Multimonitor support for screen resolution dropdown
+- Fix auto-reload to work consistently on all child directories
+- Add Random.org random number generator
+- Implement pomadoro module
 
 ## Issues / Suggestions
 
