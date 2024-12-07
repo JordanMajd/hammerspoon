@@ -1,4 +1,4 @@
-# Hammerspoon ![Version 0.8](https://img.shields.io/badge/Version-0.7-green.svg)
+# Hammerspoon ![Version 0.8](https://img.shields.io/badge/Version-0.8-green.svg)
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 ![Built with love](https://img.shields.io/badge/built%20with-%E2%9D%A4-FF8080.svg)
