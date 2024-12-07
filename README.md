@@ -16,6 +16,7 @@ If you like or are using this config, please give it a :star: for motivation :)
  - Psuedo full screen using `cmd` + `alt` + `f`
  - Lock screen using `cmd` + `alt` + `l`
  - Disables window animations.
+ - Redshift menubar item that allows variable screen temperature for easier night reading.
  - A menubar dropdown to select primary screen resolution and DPI.
  - Automatically reloads when code is updated.
 
