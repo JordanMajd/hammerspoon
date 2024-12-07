@@ -3,9 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 ![Built with love](https://img.shields.io/badge/built%20with-%E2%9D%A4-FF8080.svg)
 
-This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) that provides several features and productivity boosts for OSX.
-
-If you like or are using this config, please give it a :star: for motivation :)
+This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) that provides several features and automations for OSX.
 
 ![Image of window management](/assets/example.gif)
 
