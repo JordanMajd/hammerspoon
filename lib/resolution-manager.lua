@@ -1,13 +1,12 @@
 local Util = require "lib.util"
 
---RESOLUTIONMANAGER--
+--resolution-manager.lua
 --adds a menu to quickly change screen resolutions
 --TODO individual resolution for multiple screens
 local ResolutionManager = {
   menu = hs.menubar.new(),
   menuIcon = hs.image.imageFromName("NSActionTemplate")
 }
-
 
 function ResolutionManager:getResolutionsMenuTable()
   local currentScreen = hs.screen.mainScreen()
@@ -32,7 +31,7 @@ function ResolutionManager:getResolutionsMenuTable()
 
   local menuTable = {
     currentModeEntry,
-    { title = "-"}
+    { title = "-" }
   }
 
   for i, key in ipairs(sortedAvailableModesKeys) do
@@ -41,11 +40,10 @@ function ResolutionManager:getResolutionsMenuTable()
     table.insert(menuTable, self:getMenuEntryForMode(mode))
   end
 
-   return menuTable
+  return menuTable
 end
 
 function ResolutionManager:getMenuEntryForMode(mode)
-
   local me = self
 
   return {
@@ -63,6 +61,5 @@ function ResolutionManager:init()
   self.menu:setIcon(self.menuIcon)
   self.menu:setTooltip("Select screen resolution")
 end
-
 
 return ResolutionManager

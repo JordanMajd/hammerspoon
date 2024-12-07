@@ -6,7 +6,7 @@ local Conky = {
   tickRate = 10,
   background = nil,
   backgroundDimensions = hs.geometry.rect(0, 50, 165, 350),
-  backgroundColor = {red=0, blue=0, green=0, alpha=0.65},
+  backgroundColor = { red = 0, blue = 0, green = 0, alpha = 0.65 },
   text = nil,
   textDimensions = hs.geometry.rect(10, 60, 165, 350),
   bodyStyle = {
@@ -17,7 +17,7 @@ local Conky = {
       name = "Monaco",
       size = 12
     },
-    color = { red=0, blue=0, green=1, alpha=1 }
+    color = { red = 0, blue = 0, green = 1, alpha = 1 }
   },
   breakStyle = {
     paragraphStyle = {
@@ -27,7 +27,7 @@ local Conky = {
       name = ".AppleSystemUIFont",
       size = 18
     },
-    color = { red=1, blue=1, green=1, alpha=0.5 }
+    color = { red = 1, blue = 1, green = 1, alpha = 0.5 }
   },
   headerStyle = {
     paragraphStyle = {
@@ -37,14 +37,13 @@ local Conky = {
       name = ".AppleSystemUIFont",
       size = 18
     },
-    color = { red=1, blue=1, green=1, alpha=1 }
+    color = { red = 1, blue = 1, green = 1, alpha = 1 }
   },
 
   netConfig = hs.network.configuration.open()
 }
 
 function Conky:init()
-
   local me = self
   self:initBackground()
   self:initText()
@@ -74,11 +73,10 @@ function Conky:initText()
 end
 
 function Conky:updateText()
-
   local text = hs.styledtext.new("", {})
 
   local systemText = hs.host.localizedName() .. "\n"
-  systemText = systemText .. self.netConfig:consoleUser() .."\n"
+  systemText = systemText .. self.netConfig:consoleUser() .. "\n"
 
   local systemName = hs.styledtext.new(systemText, self.headerStyle)
   text = text:__concat(systemName)
@@ -90,11 +88,9 @@ function Conky:updateText()
   text = text:__concat(vmStats)
 
   self.text:setStyledText(text)
-
 end
 
 function Conky:getCpuUsage()
-
   local returnText = hs.styledtext.new("", {})
   returnText = returnText:__concat(self:getSeparator())
 
@@ -128,7 +124,6 @@ function Conky:getCpuUsage()
 end
 
 function Conky:getVmStats()
-
   local returnText = hs.styledtext.new("", {})
   returnText = returnText:__concat(self:getSeparator())
 
@@ -149,7 +144,7 @@ function Conky:getVmStats()
   -- Compressed: -> Pages occupied by compressor
   -- App Memory: -> Pages Active + Pages Speculative
   --http://apple.stackexchange.com/questions/81581/why-does-free-active-inactive-speculative-wired-not-equal-total-ram
-  local megsUsed =  vmStats.pagesWiredDown * megMulti
+  local megsUsed = vmStats.pagesWiredDown * megMulti
   megsUsed = megsUsed + vmStats.pagesUsedByVMCompressor * megMulti
   megsUsed = megsUsed + vmStats.pagesActive * megMulti
   megsUsed = megsUsed + vmStats.pagesSpeculative * megMulti
@@ -159,8 +154,10 @@ function Conky:getVmStats()
 
   local megsCached = vmStats.fileBackedPages * megMulti
 
-  local vmBodyText =         "In Use: " .. string.format("%.f", megsUsed) .. "M - ".. string.format("%.f", megsUsed / totalMegs * 100) .. "%\n"
-  vmBodyText = vmBodyText .. "Free  : " .. string.format("%.f", freeMegs) .. "M - ".. string.format("%.f", freeMegs / totalMegs * 100) .. "%\n"
+  local vmBodyText = "In Use: " ..
+      string.format("%.f", megsUsed) .. "M - " .. string.format("%.f", megsUsed / totalMegs * 100) .. "%\n"
+  vmBodyText = vmBodyText ..
+      "Free  : " .. string.format("%.f", freeMegs) .. "M - " .. string.format("%.f", freeMegs / totalMegs * 100) .. "%\n"
   vmBodyText = vmBodyText .. "Total : " .. string.format("%.f", totalMegs) .. "M\n"
   vmBodyText = vmBodyText .. "Cached: " .. string.format("%.f", megsCached) .. "M\n"
   local vmBody = hs.styledtext.new(vmBodyText, self.bodyStyle)

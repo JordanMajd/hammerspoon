@@ -1,6 +1,6 @@
 local Util = require "lib.util"
 
---AUTORELOAD--
+--auto-reload.lua
 --watches ~/.hammerspoon directory for changes to .lua and reloads configs
 AutoReload = {
 	watcher = nil
@@ -9,7 +9,7 @@ AutoReload = {
 function AutoReload:reloadConfig(files)
 	print("reload")
 	local doReload = false
-	for _,file in pairs(files) do
+	for _, file in pairs(files) do
 		if file:sub(-4) == ".lua" then
 			doReload = true
 		end
@@ -21,10 +21,10 @@ function AutoReload:reloadConfig(files)
 end
 
 function AutoReload:init()
-  self.watcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", function(paths)
+	self.watcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", function(paths)
 		AutoReload:reloadConfig(paths)
 	end):start()
-  Util.toast("Hammerspoon","Config Reloaded.");
+	Util.toast("Hammerspoon", "Config Reloaded.");
 end
 
 return AutoReload

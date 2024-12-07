@@ -10,7 +10,6 @@ local Redshift = {
 }
 
 function Redshift:turnDown()
-
   if self.temperature >= 1100 then
     self.temperature = self.temperature - 100
   end
@@ -19,7 +18,6 @@ function Redshift:turnDown()
 end
 
 function Redshift:turnUp()
-
   if self.temperature <= 9900 then
     self.temperature = self.temperature + 100
   end
@@ -33,27 +31,25 @@ function Redshift:reset()
 end
 
 function Redshift:setTemp()
+  local currentHour = tonumber(os.date("%H"))
+  local currentMin = tonumber(os.date("%M"))
 
-    local currentHour = tonumber(os.date("%H"))
-    local currentMin = tonumber(os.date("%M"))
+  local endHour = currentHour + 12
+  if endHour > 23 then
+    endHour = endHour - 23
+  end
 
-    local endHour = currentHour + 12
-    if endHour > 23 then
-      endHour = endHour - 23
-    end
+  hs.redshift.stop()
 
-    hs.redshift.stop()
-
-    hs.redshift.start(self.temperature, os.date("%H:%M"), tostring(endHour) .. ":" .. tostring(currentMin), 0)
+  hs.redshift.start(self.temperature, os.date("%H:%M"), tostring(endHour) .. ":" .. tostring(currentMin), 0)
 end
 
 function Redshift:init()
-
   local me = self
 
   self.upMenu:setIcon(hs.image.imageFromName("NSGoRightTemplate"))
   self.upMenu:setClickCallback(function()
-      me:turnUp()
+    me:turnUp()
   end)
 
   self.resetMenu:setIcon(hs.image.imageFromName("NSRefreshTemplate"))
@@ -63,10 +59,8 @@ function Redshift:init()
 
   self.downMenu:setIcon(hs.image.imageFromName("NSGoLeftTemplate"))
   self.downMenu:setClickCallback(function()
-      me:turnDown()
+    me:turnDown()
   end)
-
 end
-
 
 return Redshift
