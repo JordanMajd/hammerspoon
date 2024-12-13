@@ -28,7 +28,6 @@ Enable or disable features by commenting them out in the `init.lua` file.
 
 ## Roadmap
 
-- Multimonitor support for screen resolution dropdown
 - Add Random.org random number generator
 - Implement pomadoro module
 
