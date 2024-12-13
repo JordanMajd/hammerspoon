@@ -9,3 +9,5 @@ GridManager:init()
 ResolutionManager:init()
 RedshiftManager:init()
 Conky:init()
+
+print("Hammerspoon loaded")

@@ -7,7 +7,6 @@ AutoReload = {
 };
 
 function AutoReload:reloadConfig(files)
-	print("reload")
 	local doReload = false
 	for _, file in pairs(files) do
 		if file:sub(-4) == ".lua" then

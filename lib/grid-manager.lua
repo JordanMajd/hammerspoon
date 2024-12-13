@@ -125,10 +125,19 @@ function GridManager:init()
   --no margins between windows
   hs.grid.setMargins(hs.geometry(0, 0))
 
-  --init 2 by 2 grid for each screen
-  for i, screen in ipairs(hs.screen.allScreens()) do
-    hs.grid.setGrid('2x2', screen)
+  --configure 2 by 2 grid for each screen
+  local gridSetup = function()
+    print("display update: grid reconfigured")
+    for i, screen in ipairs(hs.screen.allScreens()) do
+      hs.grid.setGrid('2x2', screen)
+    end
   end
+
+  gridSetup()
+  --reconfigure grid when new display layout changes
+  hs.screen.watcher.new(function()
+    gridSetup()
+  end):start()
 
   self:setKeyBindings()
 end

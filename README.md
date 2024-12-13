@@ -1,4 +1,4 @@
-# Hammerspoon ![Version 0.8](https://img.shields.io/badge/Version-0.8-green.svg)
+# Hammerspoon ![Version 0.9](https://img.shields.io/badge/Version-0.9-green.svg)
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 ![Built with love](https://img.shields.io/badge/built%20with-%E2%9D%A4-FF8080.svg)
@@ -28,9 +28,7 @@ Enable or disable features by commenting them out in the `init.lua` file.
 
 ## Roadmap
 
-- Make the window grid re-init on screen connect event so grids retain expected dimensions
 - Multimonitor support for screen resolution dropdown
-- Fix auto-reload to work consistently on all child directories
 - Add Random.org random number generator
 - Implement pomadoro module
 
