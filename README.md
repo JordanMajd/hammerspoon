@@ -15,7 +15,7 @@ This is a script for [Hammerspoon](https://github.com/Hammerspoon/hammerspoon) t
  - Lock screen using `cmd` + `alt` + `l`
  - Disables window animations.
  - Redshift menubar item that allows variable screen temperature for easier night reading.
- - A menubar dropdown to select primary screen resolution and DPI.
+ - A menubar dropdown to select monitor resolution and DPI.
  - Automatically reloads when code is updated.
 
 ## Installation
